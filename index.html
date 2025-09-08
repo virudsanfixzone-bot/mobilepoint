@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MobilePoint - Professional Phone Repairs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0066ff;
+            --primary-dark: #0052cc;
+            --secondary: #ff6600;
+            --light: #f8f9fa;
+            --dark: #222;
+            --gray: #6c757d;
+            --success: #28a745;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 102, 255, 0.3);
+        }
+        
+        .btn-secondary {
+            background: var(--secondary);
+        }
+        
+        .btn-secondary:hover {
+            background: #e55c00;
+            box-shadow: 0 5px 15px rgba(255, 102, 0, 0.3);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            color: var(--dark);
+        }
+        
+        .section-title span {
+            color: var(--primary);
+        }
+        
+        /* Header Styles */
+        header {
+            background: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--dark);
+        }
+        
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+            color: white;
+            font-size: 20px;
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .nav-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin-right: 30px;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .language-selector {
+            display: flex;
+            align-items: center;
+            background: var(--light);
+            border-radius: 30px;
+            padding: 5px;
+        }
+        
+        .language-btn {
+            padding: 8px 15px;
+            border-radius: 30px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .language-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1516387938699-a93567ec168e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-card i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .service-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        /* Booking Section */
+        .booking {
+            padding: 80px 0;
+            background: var(--light);
+        }
+        
+        .booking-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+        
+        .booking-steps {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .step {
+            margin-bottom: 30px;
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+        }
+        
+        .step-title {
+            display: inline-block;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .booking-form {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group select,
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .device-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .device-option {
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .device-option:hover {
+            border-color: var(--primary);
+        }
+        
+        .device-option.selected {
+            border-color: var(--primary);
+            background-color: rgba(0, 102, 255, 0.1);
+        }
+        
+        .device-option i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--gray);
+        }
+        
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .problem-option {
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .problem-option:hover {
+            border-color: var(--primary);
+        }
+        
+        .problem-option.selected {
+            border-color: var(--primary);
+            background-color: rgba(0, 102, 255, 0.1);
+        }
+        
+        .problem-option i {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--gray);
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background: var(--light);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .testimonial-author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background: var(--light);
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .contact-detail i {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-right: 15px;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #333;
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+        }
+        
+        .modal-icon {
+            font-size: 4rem;
+            color: var(--success);
+            margin-bottom: 20px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .booking-container,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+            
+            .nav-container {
+                margin-top: 20px;
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                margin: 0 0 20px 0;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-links li {
+                margin: 5px 15px;
+            }
+            
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .device-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .device-grid,
+            .problem-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <div class="logo-img">MP</div>
+                <div class="logo-text">MobilePoint</div>
+            </a>
+            <div class="nav-container">
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#booking">Booking</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="language-selector">
+                    <button class="language-btn active" data-lang="en">EN</button>
+                    <button class="language-btn" data-lang="de">DE</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h2 data-translate="hero_title">Professional Phone Repairs<br>Fast & Affordable</h2>
+            <p data-translate="hero_text">We fix all smartphone models with a 12-month warranty on all repairs. Fast turnaround time with same-day service available.</p>
+            <a href="#booking" class="btn" data-translate="hero_button">Book a Repair</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title" data-translate="services_title">Our <span>Services</span></h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-mobile"></i>
+                    <h3 data-translate="service1_title">Screen Replacement</h3>
+                    <p data-translate="service1_text">We replace cracked and broken screens with high-quality OEM or aftermarket parts.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-battery-full"></i>
+                    <h3 data-translate="service2_title">Battery Replacement</h3>
+                    <p data-translate="service2_text">Is your phone dying too quickly? We'll replace your battery with a new high-capacity one.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-tint"></i>
+                    <h3 data-translate="service3_title">Water Damage Repair</h3>
+                    <p data-translate="service3_text">Accidentally dropped your phone in water? We can help recover it from liquid damage.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-portrait"></i>
+                    <h3 data-translate="service4_title">Camera Repair</h3>
+                    <p data-translate="service4_text">Blurry photos? Broken camera? We repair and replace front and rear cameras.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-plug"></i>
+                    <h3 data-translate="service5_title">Charging Port Repair</h3>
+                    <p data-translate="service5_text">Having trouble charging your device? We fix and replace faulty charging ports.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-unlock"></i>
+                    <h3 data-translate="service6_title">Software Issues</h3>
+                    <p data-translate="service6_text">We solve software problems, from crashed systems to virus removal and updates.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section class="booking" id="booking">
+        <div class="container">
+            <h2 class="section-title" data-translate="booking_title">Book a <span>Repair</span></h2>
+            <div class="booking-container">
+                <div class="booking-steps">
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        <span class="step-title" data-translate="step1_title">Select your device</span>
+                        <p data-translate="step1_text">Choose the brand and model of your smartphone.</p>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <span class="step-title" data-translate="step2_title">Describe the problem</span>
+                        <p data-translate="step2_text">Tell us what issues you're experiencing with your device.</p>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        <span class="step-title" data-translate="step3_title">Choose time & place</span>
+                        <p data-translate="step3_text">Select when and where you'd like your repair done.</p>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">4</span>
+                        <span class="step-title" data-translate="step4_title">Confirm booking</span>
+                        <p data-translate="step4_text">Review your information and confirm your appointment.</p>
+                    </div>
+                </div>
+                <div class="booking-form">
+                    <h3 data-translate="form_title">Repair Booking Form</h3>
+                    <p data-translate="form_subtitle">Fill out the form below to book your repair appointment</p>
+                    
+                    <form id="repairForm">
+                        <div class="form-group">
+                            <label for="deviceType" data-translate="device_type">Device Type</label>
+                            <select id="deviceType" required>
+                                <option value="" data-translate="select_option">Select an option</option>
+                                <option value="smartphone" data-translate="option_smartphone">Smartphone</option>
+                                <option value="tablet" data-translate="option_tablet">Tablet</option>
+                                <option value="laptop" data-translate="option_laptop">Laptop</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label data-translate="device_brand">Device Brand</label>
+                            <div class="device-grid">
+                                <div class="device-option" data-brand="apple">
+                                    <i class="fab fa-apple"></i>
+                                    <div>Apple</div>
+                                </div>
+                                <div class="device-option" data-brand="samsung">
+                                    <i class="fas fa-mobile"></i>
+                                    <div>Samsung</div>
+                                </div>
+                                <div class="device-option" data-brand="huawei">
+                                    <i class="fas fa-mobile"></i>
+                                    <div>Huawei</div>
+                                </div>
+                                <div class="device-option" data-brand="xiaomi">
+                                    <i class="fas fa-mobile"></i>
+                                    <div>Xiaomi</div>
+                                </div>
+                                <div class="device-option" data-brand="google">
+                                    <i class="fab fa-google"></i>
+                                    <div>Google</div>
+                                </div>
+                                <div class="device-option" data-brand="other">
+                                    <i class="fas fa-mobile"></i>
+                                    <div data-translate="other_brand">Other</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="deviceModel" data-translate="device_model">Device Model</label>
+                            <select id="deviceModel" required>
+                                <option value="" data-translate="select_model">Select your model</option>
+                                <!-- Options will be populated based on brand selection -->
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label data-translate="problem_type">Problem Type</label>
+                            <div class="problem-grid">
+                                <div class="problem-option" data-problem="screen">
+                                    <i class="fas fa-mobile"></i>
+                                    <div data-translate="problem_screen">Cracked Screen</div>
+                                </div>
+                                <div class="problem-option" data-problem="battery">
+                                    <i class="fas fa-battery-quarter"></i>
+                                    <div data-translate="problem_battery">Battery Issue</div>
+                                </div>
+                                <div class="problem-option" data-problem="water">
+                                    <i class="fas fa-tint"></i>
+                                    <div data-translate="problem_water">Water Damage</div>
+                                </div>
+                                <div class="problem-option" data-problem="charging">
+                                    <i class="fas fa-plug"></i>
+                                    <div data-translate="problem_charging">Charging Issue</div>
+                                </div>
+                                <div class="problem-option" data-problem="camera">
+                                    <i class="fas fa-camera"></i>
+                                    <div data-translate="problem_camera">Camera Problem</div>
+                                </div>
+                                <div class="problem-option" data-problem="software">
+                                    <i class="fas fa-bug"></i>
+                                    <div data-translate="problem_software">Software Issue</div>
+                                </div>
+                                <div class="problem-option" data-problem="other">
+                                    <i class="fas fa-question-circle"></i>
+                                    <div data-translate="problem_other">Other Problem</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="problemDescription" data-translate="problem_description">Problem Description</label>
+                            <textarea id="problemDescription" rows="3" placeholder="Please describe the problem in detail"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="customerName" data-translate="customer_name">Your Name</label>
+                            <input type="text" id="customerName" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="customerEmail" data-translate="customer_email">Email Address</label>
+                            <input type="email" id="customerEmail" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="customerPhone" data-translate="customer_phone">Phone Number</label>
+                            <input type="tel" id="customerPhone" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="appointmentDate" data-translate="appointment_date">Preferred Date</label>
+                            <input type="date" id="appointmentDate" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="appointmentTime" data-translate="appointment_time">Preferred Time</label>
+                            <select id="appointmentTime" required>
+                                <option value="" data-translate="select_time">Select time</option>
+                                <option value="09:00">09:00 - 10:00</option>
+                                <option value="10:00">10:00 - 11:00</option>
+                                <option value="11:00">11:00 - 12:00</option>
+                                <option value="13:00">13:00 - 14:00</option>
+                                <option value="14:00">14:00 - 15:00</option>
+                                <option value="15:00">15:00 - 16:00</option>
+                                <option value="16:00">16:00 - 17:00</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-secondary" data-translate="submit_booking">Submit Booking</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title" data-translate="testimonials_title">Customer <span>Testimonials</span></h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text" data-translate="testimonial1_text">
+                        "I cracked my iPhone screen and thought I'd have to pay a fortune. MobilePoint had it fixed in under an hour for half what Apple quoted. Great service!"
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Sarah M.">
+                        <div>
+                            <h4>Sarah M.</h4>
+                            <p data-translate="google_review">Google Review</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text" data-translate="testimonial2_text">
+                        "My Samsung phone stopped charging and I was worried I'd need a new phone. They fixed the charging port quickly and affordably. Highly recommend!"
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="James T.">
+                        <div>
+                            <h4>James T.</h4>
+                            <p data-translate="facebook_review">Facebook Review</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text" data-translate="testimonial3_text">
+                        "Dropped my phone in water and it wouldn't turn on. These guys worked their magic and saved my phone and all my data. Thank you so much!"
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Lisa P.">
+                        <div>
+                            <h4>Lisa P.</h4>
+                            <p data-translate="yelp_review">Yelp Review</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title" data-translate="contact_title">Contact <span>Us</span></h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-detail">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4 data-translate="location_title">Our Location</h4>
+                            <p data-translate="location_address">123 Tech Street, Cityville, ST 12345</p>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4 data-translate="hours_title">Opening Hours</h4>
+                            <p>Mon-Fri: 9am - 6pm</p>
+                            <p>Sat: 10am - 4pm</p>
+                            <p data-translate="sunday_closed">Sun: Closed</p>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4 data-translate="call_us">Call Us</h4>
+                            <p>(555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4 data-translate="email_us">Email Us</h4>
+                            <p>info@mobilepoint.ch</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3 data-translate="send_message">Send us a Message</h3>
+                    <form>
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                        <input type="tel" placeholder="Your Phone">
+                        <textarea placeholder="How can we help you?" required></textarea>
+                        <button type="submit" class="btn" data-translate="send_button">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h4>MobilePoint</h4>
+                    <p data-translate="footer_description">Professional phone repairs with a lifetime warranty on all services. Fast, affordable, and reliable.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4 data-translate="quick_links">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#booking">Booking</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4 data-translate="our_services">Our Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Screen Replacement</a></li>
+                        <li><a href="#">Battery Replacement</a></li>
+                        <li><a href="#">Water Damage Repair</a></li>
+                        <li><a href="#">Camera Repair</a></li>
+                        <li><a href="#">Software Issues</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4 data-translate="newsletter">Newsletter</h4>
+                    <p data-translate="newsletter_text">Subscribe to our newsletter for special offers and updates.</p>
+                    <form>
+                        <input type="email" placeholder="Your Email" required style="padding: 10px; width: 100%; margin-bottom: 10px; border-radius: 5px; border: none;">
+                        <button type="submit" class="btn" style="padding: 10px 15px; width: 100%;" data-translate="subscribe_button">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 MobilePoint. All rights reserved. | <a href="https://mobilepoint.ch" style="color: #ccc;">mobilepoint.ch</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <div class="modal-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3 data-translate="success_title">Booking Successful!</h3>
+            <p data-translate="success_text">Thank you for your booking. We have sent a confirmation to your email address.</p>
+            <button class="btn" onclick="closeModal()" data-translate="success_button">OK</button>
+        </div>
+    </div>
+
+    <script>
+        // Language Support
+        const translations = {
+            en: {
+                hero_title: "Professional Phone Repairs<br>Fast & Affordable",
+                hero_text: "We fix all smartphone models with a 12-month warranty on all repairs. Fast turnaround time with same-day service available.",
+                hero_button: "Book a Repair",
+                services_title: "Our <span>Services</span>",
+                service1_title: "Screen Replacement",
+                service1_text: "We replace cracked and broken screens with high-quality OEM or aftermarket parts.",
+                service2_title: "Battery Replacement",
+                service2_text: "Is your phone dying too quickly? We'll replace your battery with a new high-capacity one.",
+                service3_title: "Water Damage Repair",
+                service3_text: "Accidentally dropped your phone in water? We can help recover it from liquid damage.",
+                service4_title: "Camera Repair",
+                service4_text: "Blurry photos? Broken camera? We repair and replace front and rear cameras.",
+                service5_title: "Charging Port Repair",
+                service5_text: "Having trouble charging your device? We fix and replace faulty charging ports.",
+                service6_title: "Software Issues",
+                service6_text: "We solve software problems, from crashed systems to virus removal and updates.",
+                booking_title: "Book a <span>Repair</span>",
+                step1_title: "Select your device",
+                step1_text: "Choose the brand and model of your smartphone.",
+                step2_title: "Describe the problem",
+                step2_text: "Tell us what issues you're experiencing with your device.",
+                step3_title: "Choose time & place",
+                step3_text: "Select when and where you'd like your repair done.",
+                step4_title: "Confirm booking",
+                step4_text: "Review your information and confirm your appointment.",
+                form_title: "Repair Booking Form",
+                form_subtitle: "Fill out the form below to book your repair appointment",
+                device_type: "Device Type",
+                select_option: "Select an option",
+                option_smartphone: "Smartphone",
+                option_tablet: "Tablet",
+                option_laptop: "Laptop",
+                device_brand: "Device Brand",
+                other_brand: "Other",
+                device_model: "Device Model",
+                select
